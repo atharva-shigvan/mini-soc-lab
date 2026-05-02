@@ -46,6 +46,7 @@ We performed a service version scan (`nmap -sV`) against the target IP **192.168
 ### Phase 2: Brute Force (Hydra)
 We executed a targeted brute-force attack against the RDP service (port 3389). Using **Hydra**, we attempted to crack the password for the `testuser` account using a custom `passwords.txt` list.
 <img src="img/hydra_results.jpeg" alt="Hydra Results">
+
  
 ## Evidence Collection & Findings
  
@@ -53,14 +54,14 @@ We executed a targeted brute-force attack against the RDP service (port 3389). U
 Live packet capture during the attack revealed critical indicators:
 * A high volume of **TCP SYN/ACK/RST** packets on port 3389.
 * Significant **RDP traffic spikes** that correlated exactly with the timing of the brute-force execution.
-<img src="img/network _scan_wireshark.jpeg" alt="Wireshark Results">
-
+<img src="img/network _scan_wireshark.jpeg" alt="Wireshark Results">  
+<img src="img/rdp_connection_attempts.jpeg">
  
 ### Host-Based Evidence (Event Logs)
 Analysis of the Windows Security Logs provided definitive proof of the attack:
 * **19 filtered security events** were identified during the simulation window.
 * **Event ID 4625 (Audit Failure):** Confirmed multiple accounts failed to log on, with logs indicating the attempts originated from the network.
-
+<img src="img/failed_event_lists.png">
  
 ## Indicators of Compromise (IOCs)
  
@@ -79,3 +80,7 @@ Based on the successful simulation, we developed a multi-layered mitigation stra
 * **RDP Hardening:** Disable RDP if not required; if necessary, restrict access to trusted IPs and change the default port (3389) to a non-standard port.
 * **Policy Enforcement:** Implement **Account Lockout Policies** to stop infinite brute-force attempts.
 * **Monitoring:** Deploy a **SIEM** (Security Information and Event Management) system to trigger alerts on repeated Event ID 4625 occurrences.
+
+
+## ⚖️ Disclaimer
+This project was conducted in a **fully isolated** Host-Only network environment for educational purposes. All simulations were performed against owned virtual assets.
