@@ -5,9 +5,9 @@
 ----------------------------------------------------------------------
 
 ##  Project Overview
-**Course:** BFOR611 Incident Handling
-**Institution:** University at Albany SUNY
-**Professor:** Prof. Vinicius Lima
+**Course:** BFOR611 Incident Handling  
+**Institution:** University at Albany SUNY  
+**Professor:** Prof. Vinicius Lima  
 **Team Members:** Nithin Sridasyam and Atharva Shigvan
 
 The **Mini SOC Lab** project bridges the gap between offensive security techniques and defensive incident handling practices. By building a controlled attack/defense environment, we simulate real-world cybersecurity threats to facilitate the collection of forensic evidence and the completion of full incident response documentation
