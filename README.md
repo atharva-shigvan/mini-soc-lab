@@ -41,10 +41,11 @@ The lab environment was constructed using **Oracle VirtualBox** to ensure a secu
 ### Phase 1: Reconnaissance (Nmap)
 We performed a service version scan (`nmap -sV`) against the target IP **192.168.56.101**.
 * **Discovery:** Port **3389 (RDP)**, **445 (SMB)**, and various **RPC** ports were confirmed as active and reachable on the Windows machine.
+<img src="img/nmap_results.jpeg" alt="Nmap Results">
  
 ### Phase 2: Brute Force (Hydra)
 We executed a targeted brute-force attack against the RDP service (port 3389). Using **Hydra**, we attempted to crack the password for the `testuser` account using a custom `passwords.txt` list.
- 
+<img src="img/hydra_results.jpeg" alt="Hydra Results">
  
 ## Evidence Collection & Findings
  
@@ -52,12 +53,14 @@ We executed a targeted brute-force attack against the RDP service (port 3389). U
 Live packet capture during the attack revealed critical indicators:
 * A high volume of **TCP SYN/ACK/RST** packets on port 3389.
 * Significant **RDP traffic spikes** that correlated exactly with the timing of the brute-force execution.
+<img src="img/network _scan_wireshark.jpeg" alt="Wireshark Results">
+
  
 ### Host-Based Evidence (Event Logs)
 Analysis of the Windows Security Logs provided definitive proof of the attack:
 * **19 filtered security events** were identified during the simulation window.
 * **Event ID 4625 (Audit Failure):** Confirmed multiple accounts failed to log on, with logs indicating the attempts originated from the network.
- 
+
  
 ## Indicators of Compromise (IOCs)
  
